@@ -24,7 +24,7 @@
   "readmeFilename": "README.md",
   "_id": "compound-passport@0.0.7-3",
   "dist": {
-    "shasum": "cac4bb5ca01d73fa6e9c7182c8fe08e11205379a"
+    "shasum": "0cb85e54143805162e338a97fe4aeb5e899342fd"
   },
   "_from": "https://github.com/mivers/compound-passport/tarball/master",
   "_resolved": "https://github.com/mivers/compound-passport/tarball/master"
