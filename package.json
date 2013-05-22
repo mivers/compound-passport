@@ -5,7 +5,7 @@
   },
   "name": "compound-passport",
   "description": "PassportJS integrated with CompoundJS",
-  "version": "0.0.7-3",
+  "version": "0.0.7-4",
   "repository": {
     "type": "git",
     "url": "git@github.com:co-/-passport.git"
@@ -22,10 +22,7 @@
   "optionalDependencies": {},
   "readme": "## About\n\nPassportJS auth library integrated into CompoundJS. Why this package needed? To be honest, PassportJS is dead-simple in integrating. But it can be simplier. This package for authentication without extra coding, just configure it and use\n\n## Setup project\n\n```yaml\ndevelopment:\n  baseURL: 'http://localhost:3000/'\n  google: true\n  github:\n    clientID: \"a8578b8dc47834908338\"\n    secret: \"d8107d7cd75fc8ee1f12cf1f38b3aa065c3ec2ac\"\n  linkedin:\n    apiKey: \"3s708f1uys4x\"\n    secret: \"p3iBqlybJ5WNTINv\"\nproduction:\n  baseURL: 'http://node-js.ru/'\n  github:\n    clientID: \"....\"\n    secret: \"....\"\n```\n\nAdd module to config/autoload.js:\n\n```javascript\nmodule.exports = function() {\n    return [require('compound-passport')];\n};\n```\n\n## Use\n\nAll authentication routes starts with `/auth/PROVIDERNAME`\nJust visit `/auth/google` to sign in with google:\n\n    <% link_to('Sign in with google', '/auth/google') %>\n    <% link_to('Sign in with linkedin', '/auth/linkedin') %>\n    <% link_to('Sign in with github', '/auth/github') %>\n\nCallback urls:\n\n- github: `/auth/github/callback`\n- linkedin: `/auth/linkedin/callback`\n\nExample before filter (describe in your application controller):\n\n```javascript\nbefore(function requireManager() {\n    if (!session.passport.user) {\n        req.session.redirect = req.path;\n        redirect('/auth/linkedin');\n    } else {\n        User.find(session.passport.user, function (err, user) {\n            if (user && user.email === 'my.email@somehost.tld') {\n                req.user = user;\n                next();\n            } else {\n                flash('error', 'You have no permission to access this area');\n                redirect('/');\n            }\n        });\n    }\n});\n```\n\n## MIT License\n\n```text\nCopyright (C) 2012 by Anatoliy Chakkaev\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\nTHE SOFTWARE.\n```\n",
   "readmeFilename": "README.md",
-  "_id": "compound-passport@0.0.7-3",
   "dist": {
     "shasum": "479183a91b59a58cb9b045fa81e6a09016750c26"
   },
-  "_from": "https://github.com/mivers/compound-passport/tarball/master",
-  "_resolved": "https://github.com/mivers/compound-passport/tarball/master"
 }
